@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+==========================================================
+	Denne filen er en del av
+	Finansportalens web service kontrakter versjon 4.0
+==========================================================
+-->
+
+<!--
+================================================================================
+=== 1) Her beskrives alle tjenestespesifikke navnerom (name spaces).         ===
+================================================================================
+-->
+<wsdl:definitions name="ReiseforsikringTjeneste"
+			  targetNamespace="http://finansportalen.no/forsikring/reise/4_0"
+			  xmlns:tns="http://finansportalen.no/forsikring/reise/4_0"
+			  xmlns:typ="http://finansportalen.no/forsikring/reise/typer/4_0"
+			  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			  xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/">
+
+<!--
+================================================================================
+=== 2) Her beskrives datatypene som sendes mellom klient og tjener.          ===
+================================================================================
+-->
+	<wsdl:types>
+		<xs:schema targetNamespace="http://finansportalen.no/forsikring/reise/4_0">
+			<xs:import namespace="http://finansportalen.no/forsikring/reise/typer/4_0"
+					 schemaLocation="reiseforsikringInclude.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+
+
+<!--
+================================================================================
+=== 3) Her beskrives alle meldinger som sendes mellom klient og tjener.      ===
+================================================================================
+-->
+
+	<wsdl:message name="PingInput">
+		<wsdl:part name="request" element="typ:pingForespoersel"/>
+	</wsdl:message>
+
+	<wsdl:message name="PingOutput">
+		<wsdl:part name="response" element="typ:pingSvar"/>
+	</wsdl:message>
+
+	<wsdl:message name="HentPrisInput">
+		<wsdl:part name="request" element="typ:hentPrisForespoersel"/>
+	</wsdl:message>
+
+	<wsdl:message name="HentPrisOutput">
+		<wsdl:part name="response" element="typ:hentPrisSvar"/>
+	</wsdl:message>
+
+	<!-- Feiltyper -->
+	<wsdl:message name="PriceUnavailable">
+		<wsdl:part name="fault" element="typ:priceUnavailable"/>
+	</wsdl:message>
+
+	<wsdl:message name="ServiceUnavailable">
+		<wsdl:part name="fault" element="typ:serviceUnavailable"/>
+	</wsdl:message>
+
+	<wsdl:message name="PossibleMisuseDetected">
+		<wsdl:part name="fault" element="typ:possibleMisuseDetected"/>
+	</wsdl:message>
+
+	<wsdl:message name="RequestTimedOut">
+		<wsdl:part name="fault" element="typ:requestTimedOut"/>
+	</wsdl:message>
+
+	<wsdl:message name="NotAuthorized">
+		<wsdl:part name="fault" element="typ:notAuthorized"/>
+	</wsdl:message>
+
+	<wsdl:message name="UnknownFailure">
+		<wsdl:part name="fault" element="typ:unknownFailure"/>
+	</wsdl:message>
+
+<!--
+================================================================================
+=== 4) Her beskrives grensesnittet og alle operasjonene.                     ===
+================================================================================
+-->
+	<wsdl:portType name="ReiseforsikringPortType">
+
+		<wsdl:operation name="ping">
+			<wsdl:input message="tns:PingInput"/>
+			<wsdl:output message="tns:PingOutput"/>
+			<wsdl:fault name="ServiceUnavailable" message="tns:ServiceUnavailable"/>
+            <wsdl:fault name="RequestTimedOut" message="tns:RequestTimedOut"/>
+			<wsdl:fault name="NotAuthorized" message="tns:NotAuthorized"/>
+			<wsdl:fault name="UnknownFailure" message="tns:UnknownFailure"/>
+		</wsdl:operation>
+
+		<wsdl:operation name="hentPris">
+			<wsdl:input message="tns:HentPrisInput"/>
+			<wsdl:output message="tns:HentPrisOutput"/>
+			<wsdl:fault name="PriceUnavailable" message="tns:PriceUnavailable"/>
+			<wsdl:fault name="ServiceUnavailable" message="tns:ServiceUnavailable"/>
+            <wsdl:fault name="PossibleMisuseDetected" message="tns:PossibleMisuseDetected"/>
+            <wsdl:fault name="RequestTimedOut" message="tns:RequestTimedOut"/>
+			<wsdl:fault name="NotAuthorized" message="tns:NotAuthorized"/>
+			<wsdl:fault name="UnknownFailure" message="tns:UnknownFailure"/>
+		</wsdl:operation>
+
+	</wsdl:portType>
+
+<!--
+================================================================================
+=== 5) Her beskrives det hvordan tjenesten skal sendes.                      ===
+================================================================================
+-->
+	<wsdl:binding name="ReiseforsikringBinding" type="tns:ReiseforsikringPortType">
+		<soapbind:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+		<wsdl:operation name="ping">
+			<soapbind:operation soapAction="ping"/>
+			<wsdl:input>
+				<soapbind:body use="literal"/>
+			</wsdl:input>
+
+			<wsdl:output>
+				<soapbind:body use="literal"/>
+			</wsdl:output>
+
+			<wsdl:fault name="ServiceUnavailable">
+				<soapbind:fault name="ServiceUnavailable" use="literal"/>
+			</wsdl:fault>
+            <wsdl:fault name="RequestTimedOut">
+				<soapbind:fault name="RequestTimedOut" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="NotAuthorized">
+				<soapbind:fault name="NotAuthorized" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="UnknownFailure">
+				<soapbind:fault name="UnknownFailure" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="hentPris">
+			<soapbind:operation soapAction="hentPris"/>
+			<wsdl:input>
+				<soapbind:body use="literal"/>
+			</wsdl:input>
+
+			<wsdl:output>
+				<soapbind:body use="literal"/>
+			</wsdl:output>
+
+			<wsdl:fault name="PriceUnavailable">
+				<soapbind:fault name="PriceUnavailable" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="ServiceUnavailable">
+				<soapbind:fault name="ServiceUnavailable" use="literal"/>
+			</wsdl:fault>
+            <wsdl:fault name="PossibleMisuseDetected">
+				<soapbind:fault name="PossibleMisuseDetected" use="literal"/>
+			</wsdl:fault>
+            <wsdl:fault name="RequestTimedOut">
+				<soapbind:fault name="RequestTimedOut" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="NotAuthorized">
+				<soapbind:fault name="NotAuthorized" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="UnknownFailure">
+				<soapbind:fault name="UnknownFailure" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+
+	</wsdl:binding>
+
+<!--
+================================================================================
+=== 6) Her beskrives det hvordan tjenesten kan kalles.                       ===
+================================================================================
+-->
+	<wsdl:service name="ReiseforsikringTjeneste">
+		<wsdl:port name="ReiseforsikringPort"
+				binding="tns:ReiseforsikringBinding">
+			<soapbind:address location="http://localhost:8080/axis/services/ReiseforsikringTjeneste"/>
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

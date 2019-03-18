@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+==========================================================
+    Denne filen er en del av
+    Finansportalens web service kontrakter versjon 4.0
+========================================================== 
+-->
+
+<xs:schema targetNamespace="http://finansportalen.no/forsikring/bygning/typer/4_0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+					 
+	<xs:include schemaLocation="bygningsforsikringForespoersel.xsd"></xs:include>	
+	<xs:include schemaLocation="bygningsforsikringSvar.xsd"></xs:include>
+	
+</xs:schema>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://finansportalen.no/forsikring/reise/4_0" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://finansportalen.no/forsikring/reise/4_0" xmlns:intf="http://finansportalen.no/forsikring/reise/4_0" xmlns:tns1="http://finansportalen.no/forsikring/domene/typer/4_0" xmlns:tns2="http://finansportalen.no/forsikring/reise/typer/4_0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://finansportalen.no/forsikring/domene/typer/4_0" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://finansportalen.no/forsikring/reise/4_0"/>
+   <import namespace="http://finansportalen.no/forsikring/reise/typer/4_0"/>
+   <complexType name="PingForespoersel">
+    <sequence/>
+   </complexType>
+   <complexType name="PingSvar">
+    <sequence>
+     <element name="ok" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="Produktnavn">
+    <simpleContent>
+     <extension/>
+    </simpleContent>
+   </complexType>
+   <complexType name="Klientinfo">
+    <sequence>
+     <element name="sesjon_id" type="xsd:string"/>
+     <element name="ip_adresse" type="xsd:string"/>
+     <element name="forespoersel_id" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="http://finansportalen.no/forsikring/reise/typer/4_0" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://finansportalen.no/forsikring/reise/4_0"/>
+   <import namespace="http://finansportalen.no/forsikring/domene/typer/4_0"/>
+   <element name="pingForespoersel" type="tns1:PingForespoersel"/>
+   <element name="pingSvar" type="tns1:PingSvar"/>
+   <simpleType name="Omfang">
+    <restriction base="xsd:token">
+     <enumeration value="enkeltperson"/>
+     <enumeration value="par"/>
+     <enumeration value="familie"/>
+    </restriction>
+   </simpleType>
+   <complexType name="HentPrisForespoersel">
+    <sequence>
+     <element name="postnr" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="gatenavn" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="gatenr" type="xsd:string"/>
+     <element name="omfang" type="tns2:Omfang"/>
+     <element maxOccurs="1" minOccurs="0" name="eldste" type="xsd:int"/>
+     <element name="foedselsnr" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="foreningsmedlemskap" type="impl:ArrayOf_tns1_Produktnavn"/>
+     <element name="antallskader" type="xsd:int"/>
+     <element name="klient_info" type="tns1:Klientinfo"/>
+     <element name="navn" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="hentPrisForespoersel" type="tns2:HentPrisForespoersel"/>
+   <complexType name="HentPrisSvar">
+    <sequence>
+     <element name="pris" type="xsd:long"/>
+     <element maxOccurs="1" minOccurs="0" name="resultat_feilmelding" type="xsd:string"/>
+     <element name="presisering" type="xsd:string"/>
+     <element name="produktnavn" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="hentPrisSvar" type="tns2:HentPrisSvar"/>
+  </schema>
+  <schema targetNamespace="http://finansportalen.no/forsikring/reise/4_0" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://finansportalen.no/forsikring/reise/typer/4_0"/>
+   <import namespace="http://finansportalen.no/forsikring/domene/typer/4_0"/>
+   <complexType name="ArrayOf_tns1_Produktnavn">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Produktnavn"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="pingResponse">
+
+      <wsdl:part element="tns2:pingSvar" name="pingSvar">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="NotAuthorized">
+
+   </wsdl:message>
+
+   <wsdl:message name="RequestTimedOut">
+
+   </wsdl:message>
+
+   <wsdl:message name="PossibleMisuseDetected">
+
+   </wsdl:message>
+
+   <wsdl:message name="pingRequest">
+
+      <wsdl:part element="tns2:pingForespoersel" name="pingForespoersel">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="hentPrisResponse">
+
+      <wsdl:part element="tns2:hentPrisSvar" name="hentPrisSvar">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="hentPrisRequest">
+
+      <wsdl:part element="tns2:hentPrisForespoersel" name="hentPrisForespoersel">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ServiceUnavailable">
+
+   </wsdl:message>
+
+   <wsdl:message name="PriceUnavailable">
+
+   </wsdl:message>
+
+   <wsdl:message name="UnknownFailure">
+
+   </wsdl:message>
+
+   <wsdl:portType name="ReiseforsikringPortType">
+
+      <wsdl:operation name="ping" parameterOrder="pingForespoersel">
+
+         <wsdl:input message="impl:pingRequest" name="pingRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:pingResponse" name="pingResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:UnknownFailure" name="UnknownFailure">
+
+       </wsdl:fault>
+
+         <wsdl:fault message="impl:ServiceUnavailable" name="ServiceUnavailable">
+
+       </wsdl:fault>
+
+         <wsdl:fault message="impl:NotAuthorized" name="NotAuthorized">
+
+       </wsdl:fault>
+
+         <wsdl:fault message="impl:RequestTimedOut" name="RequestTimedOut">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="hentPris" parameterOrder="hentPrisForespoersel">
+
+         <wsdl:input message="impl:hentPrisRequest" name="hentPrisRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:hentPrisResponse" name="hentPrisResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:UnknownFailure" name="UnknownFailure">
+
+       </wsdl:fault>
+
+         <wsdl:fault message="impl:PriceUnavailable" name="PriceUnavailable">
+
+       </wsdl:fault>
+
+         <wsdl:fault message="impl:PossibleMisuseDetected" name="PossibleMisuseDetected">
+
+       </wsdl:fault>
+
+         <wsdl:fault message="impl:ServiceUnavailable" name="ServiceUnavailable">
+
+       </wsdl:fault>
+
+         <wsdl:fault message="impl:NotAuthorized" name="NotAuthorized">
+
+       </wsdl:fault>
+
+         <wsdl:fault message="impl:RequestTimedOut" name="RequestTimedOut">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ReiseforsikringPortSoapBinding" type="impl:ReiseforsikringPortType">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="ping">
+
+         <wsdlsoap:operation soapAction="ping"/>
+
+         <wsdl:input name="pingRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="pingResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnknownFailure">
+
+            <wsdlsoap:fault name="UnknownFailure" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceUnavailable">
+
+            <wsdlsoap:fault name="ServiceUnavailable" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="NotAuthorized">
+
+            <wsdlsoap:fault name="NotAuthorized" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="RequestTimedOut">
+
+            <wsdlsoap:fault name="RequestTimedOut" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="hentPris">
+
+         <wsdlsoap:operation soapAction="hentPris"/>
+
+         <wsdl:input name="hentPrisRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="hentPrisResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnknownFailure">
+
+            <wsdlsoap:fault name="UnknownFailure" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="PriceUnavailable">
+
+            <wsdlsoap:fault name="PriceUnavailable" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="PossibleMisuseDetected">
+
+            <wsdlsoap:fault name="PossibleMisuseDetected" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceUnavailable">
+
+            <wsdlsoap:fault name="ServiceUnavailable" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="NotAuthorized">
+
+            <wsdlsoap:fault name="NotAuthorized" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="RequestTimedOut">
+
+            <wsdlsoap:fault name="RequestTimedOut" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ReiseforsikringTjeneste">
+
+      <wsdl:port binding="impl:ReiseforsikringPortSoapBinding" name="ReiseforsikringPort">
+
+         <wsdlsoap:address location="http://test.finansportalen.no/insurance-calculator-ws/services/ReiseforsikringPort"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

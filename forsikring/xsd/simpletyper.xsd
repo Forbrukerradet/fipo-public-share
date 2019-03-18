@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+==========================================================
+	Denne filen er en del av
+	Finansportalens web service kontrakter versjon 4.0
+========================================================== 
+-->
+		   
+<xs:schema targetNamespace="http://finansportalen.no/forsikring/domene/typer/4_0"
+           xmlns:tns="http://finansportalen.no/forsikring/domene/typer/4_0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:annotation>
+		<xs:documentation>
+			Definisjon av enkle typer som foedselsnummer ...
+		</xs:documentation>
+	</xs:annotation>
+	
+	<xs:simpleType name="Foedselsnr">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{11}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Aarstall">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1800"/>
+			<xs:pattern value="[0-9]{4}"/>	
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Pris">
+		<xs:restriction base="xs:long">
+			<xs:totalDigits value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+    
+    <xs:simpleType name="Feilmelding">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="80"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="Produktnavn">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+	
+	<xs:simpleType name="Presisering">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="450"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Forening">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Postnr">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Gatenavn">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Gatenr">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Byggemaate">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="tre"/>
+			<xs:enumeration value="branntrygt"/>
+			<xs:enumeration value="mur"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Utleieandel">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="ikke_utleid"/>
+			<xs:enumeration value="hele"/>
+			<xs:enumeration value="deler"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="InnbruddsalarmEgenskap">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="fg_godkjent"/>
+			<xs:enumeration value="varsler_mobiltelefon"/>
+			<xs:enumeration value="varsler_vaktselskap"/>
+			<xs:enumeration value="fg_godkjent_sikring"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name="ElKontroll">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="ja_siste_ti"/>
+            <xs:enumeration value="ja_siste_fem"/>
+            <xs:enumeration value="nei"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="Utdannelse">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="ingen"/>
+            <xs:enumeration value="grunnskole"/>
+            <xs:enumeration value="videregaaende"/>
+            <xs:enumeration value="tilleggsutdanning_etter_videregaaende"/>
+            <xs:enumeration value="bachelor"/>
+            <xs:enumeration value="master"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="Yrke">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Navn">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="510"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Areal">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+</xs:schema>

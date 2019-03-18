@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+==========================================================
+	Denne filen er en del av
+	Finansportalens web service kontrakter versjon 4.0
+========================================================== 
+-->
+		   
+<xs:schema targetNamespace="http://finansportalen.no/forsikring/bygning/typer/4_0"
+           xmlns:tns="http://finansportalen.no/forsikring/bygning/typer/4_0" 
+           xmlns:dom="http://finansportalen.no/forsikring/domene/typer/4_0" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:import namespace="http://finansportalen.no/forsikring/domene/typer/4_0" schemaLocation="bygningsforsikringTyperInclude.xsd"/>
+    
+	<xs:element name="pingForespoersel" type="dom:PingForespoersel"/>
+	
+	<xs:element name="hentPrisForespoersel" type="tns:HentPrisForespoersel"/>
+	
+	<xs:complexType name="HentPrisForespoersel">
+		<xs:sequence>
+			<xs:element name="postnr" type="dom:Postnr"/>
+			<xs:element name="gatenavn" type="dom:Gatenavn" minOccurs="0"/>
+			<xs:element name="gatenr" type="dom:Gatenr" minOccurs="0"/>
+            <xs:element name="boligtype" type="tns:Boligtype"/>
+			<xs:element name="bruttoareal" type="dom:Areal"/>
+            <xs:element name="standard" type="tns:Standard"/>
+            <xs:element name="byggeaar" type="xs:int"/>
+            <xs:element name="byggemaate" type="dom:Byggemaate"/>
+            <xs:element name="antall_boenheter" type="xs:int" minOccurs="0"/>
+            <xs:element name="utleieandel" type="dom:Utleieandel" minOccurs="0"/>
+            <xs:element name="bebodd" type="xs:boolean"/>
+            <xs:element name="borselv" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="roer_i_roer" type="xs:boolean"/>
+            <xs:element name="leie_naering" type="xs:boolean"/>
+            <xs:element name="innbruddsalarm" type="xs:boolean"/>
+            <xs:element name="innbruddsalarm_egenskap" type="dom:InnbruddsalarmEgenskap" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="brannalarm" type="xs:boolean"/>
+            <xs:element name="brannalarm_egenskap" type="tns:BrannalarmEgenskap" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="vannalarm" type="xs:boolean"/>
+            <xs:element name="vannstoppventil" type="xs:boolean"/>
+            <xs:element name="overspenningsvern" type="xs:boolean"/>
+            <xs:element name="egenandel" type="xs:int"/>
+            <xs:element name="foedselsnr" type="dom:Foedselsnr" />
+            <xs:element name="antall_forsikringsskader_bygning" type="tns:Forsikringsskader"/>
+            <!-- hvis ingen vannskade siste 3 aar, så benyttes elementet ikke -->
+            <xs:element name="vannskade_aar" type="dom:Aarstall" minOccurs="0"/>
+            <xs:element name="musograateskader" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="andreskader" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="nytt_el_anlegg_aar" type="dom:Aarstall" minOccurs="0"/>
+      		<!-- hvis roer-opplegg ikke er totalrenovert, eller man ikke vet naar, saa benyttes elementet ikke -->
+	        <xs:element name="roerrenovert_aar" type="dom:Aarstall" minOccurs="0"/>
+			<xs:element name="antall_vaatrom" type="xs:int" minOccurs="0"/>
+            <xs:element name="sammenkoblede_roeykvarslere" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="antall_husstandsmedlemmer" type="xs:int"/>
+            <xs:element name="roeykere" type="xs:boolean" />
+            <xs:element name="takvinkel" type="tns:Takvinkel" />
+            <xs:element name="el_kontroll" type="dom:ElKontroll" />
+            <xs:element name="komfyrvakt" type="xs:boolean" />
+            <xs:element name="automatsikringer" type="xs:boolean" />
+            <xs:element name="automatsikringer_aar" type="dom:Aarstall" minOccurs="0"/>
+            <xs:element name="p_rom_sum" type="dom:Areal" minOccurs="0"/>
+            <xs:element name="p_rom_kjeller" type="dom:Areal" minOccurs="0"/>
+            <xs:element name="s_rom_sum" type="dom:Areal" minOccurs="0"/>
+            <xs:element name="s_rom_kjeller" type="dom:Areal" minOccurs="0"/>
+            <xs:element name="krypkjeller" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="foreningsmedlemskap" type="dom:Foreningsmedlemskap" minOccurs="0"/>
+            <xs:element name="navn" type="dom:Navn"/>
+            <xs:element name="verneverdig" type="xs:boolean" />
+            <xs:element name="rehabilitering" type="xs:boolean" />
+            <xs:element name="kjoleskap" type="xs:boolean" />
+            <xs:element name="vannstoppventil_kjoleskap" type="xs:boolean"  minOccurs="0"/>
+            <xs:element name="etasjer" type="tns:Etasjer"/>
+            <xs:element name="tilbakeslagsventil" type="xs:boolean" />
+            <xs:element name="pant_i_bygning" type="xs:boolean" />
+            <xs:element name="rom_ubakkeplan" type="xs:boolean" />
+            <xs:element name="tak_i_god_stand" type="xs:boolean" />
+			<xs:element name="klient_info" type="dom:Klientinfo"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="Standard">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="daarlig"/>
+			<xs:enumeration value="normal"/>
+			<xs:enumeration value="bedre"/>
+			<xs:enumeration value="hoey"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Takvinkel">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="flatt_tak"/>
+			<xs:enumeration value="skraatak"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Boligtype">
+		<xs:restriction base="xs:token">
+            <xs:enumeration value="enebolig"/>
+			<xs:enumeration value="tomannsbolig_horisontal"/>
+            <xs:enumeration value="tomannsbolig_vertikal"/>
+			<xs:enumeration value="tremansbolig"/>
+            <xs:enumeration value="firmansbolig"/>
+            <xs:enumeration value="rekkehus"/>
+            <xs:enumeration value="kjedet_enebolig"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name="BrannalarmEgenskap">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="fg_godkjent"/>
+            <xs:enumeration value="varsler_mobiltelefon"/>
+            <xs:enumeration value="varsler_vaktselskap"/>
+            <xs:enumeration value="varsler_med_sirene"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Forsikringsskader">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="10"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Etasjer">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
+	
+</xs:schema>

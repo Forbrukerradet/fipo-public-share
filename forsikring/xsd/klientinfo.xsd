@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+==========================================================
+	Denne filen er en del av
+	Finansportalens web service kontrakter versjon 4.0
+========================================================== 
+-->
+		   
+<xs:schema targetNamespace="http://finansportalen.no/forsikring/domene/typer/4_0"
+		   xmlns:tns="http://finansportalen.no/forsikring/domene/typer/4_0"
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		   
+		   
+	<xs:include schemaLocation="simpletyper.xsd"/>
+
+	<xs:annotation>
+		<xs:documentation>
+			Klientinformasjon.
+		</xs:documentation>
+	</xs:annotation>
+	
+	<xs:complexType name="Klientinfo">
+		<xs:sequence>
+			<xs:element name="sesjon_id" type="tns:SesjonId"/>
+			<xs:element name="ip_adresse" type="tns:IPAdresse"/>
+			
+			<!-- unik id som identifiserer den aktuelle forespoerselen -->
+			<xs:element name="forespoersel_id" type="tns:ForespoerselId"/>
+			
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:simpleType name="SesjonId">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="IPAdresse">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ForespoerselId">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+</xs:schema>

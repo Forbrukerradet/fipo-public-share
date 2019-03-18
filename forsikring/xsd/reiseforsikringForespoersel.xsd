@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+==========================================================
+	Denne filen er en del av
+	Finansportalens web service kontrakter versjon 4.0
+========================================================== 
+-->
+		   
+<xs:schema targetNamespace="http://finansportalen.no/forsikring/reise/typer/4_0"
+           xmlns:tns="http://finansportalen.no/forsikring/reise/typer/4_0"
+           xmlns:dom="http://finansportalen.no/forsikring/domene/typer/4_0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:import namespace="http://finansportalen.no/forsikring/domene/typer/4_0" schemaLocation="reiseforsikringTyperInclude.xsd"/>
+	
+    <xs:element name="pingForespoersel" type="dom:PingForespoersel"/>
+	
+	<xs:element name="hentPrisForespoersel" type="tns:HentPrisForespoersel"/>
+	
+	<xs:complexType name="HentPrisForespoersel">
+		<xs:sequence>
+            <xs:element name="postnr" type="dom:Postnr"/>
+            <xs:element name="gatenavn" type="dom:Gatenavn" minOccurs="0"/>
+            <xs:element name="gatenr" type="dom:Gatenr" minOccurs="0"/>
+			<xs:element name="omfang" type="tns:Omfang"/>
+			<xs:element name="eldste" type="tns:Eldste" minOccurs="0"/>
+            <xs:element name="foedselsnr" type="dom:Foedselsnr" />
+            <xs:element name="foreningsmedlemskap" type="dom:Foreningsmedlemskap" minOccurs="0"/>
+			<xs:element name="antallskader" type="tns:Antallskader"/>
+			<xs:element name="klient_info" type="dom:Klientinfo"/>
+			<xs:element name="navn" type="dom:Navn"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:simpleType name="Omfang">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="enkeltperson"/>
+			<xs:enumeration value="par"/>
+			<xs:enumeration value="familie"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Eldste">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="18"/>
+			<xs:maxInclusive value="110"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Antallskader">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+</xs:schema>

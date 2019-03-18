@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+==========================================================
+	Denne filen er en del av
+	Finansportalens web service kontrakter versjon 4.0
+========================================================== 
+-->
+		   
+<xs:schema targetNamespace="http://finansportalen.no/forsikring/reise/typer/4_0"
+           xmlns:tns="http://finansportalen.no/forsikring/reise/typer/4_0"
+           xmlns:dom="http://finansportalen.no/forsikring/domene/typer/4_0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+						
+	<xs:import namespace="http://finansportalen.no/forsikring/domene/typer/4_0" schemaLocation="reiseforsikringSvarTyper.xsd"/>
+	
+	<xs:element name="pingSvar" type="dom:PingSvar"/>
+
+	<xs:element name="hentPrisSvar" type="tns:HentPrisSvar"/>
+
+	<xs:complexType name="HentPrisSvar">
+		<xs:sequence>
+			<xs:element name="pris" type="dom:Pris"/>
+            <xs:element name="resultat_feilmelding" type="dom:Feilmelding" minOccurs="0"/>
+			<xs:element name="presisering" type="dom:Presisering"/>
+            <xs:element name="produktnavn" type="dom:Produktnavn"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="priceUnavailable" type="dom:PriceUnavailable"/>
+	<xs:element name="serviceUnavailable" type="dom:ServiceUnavailable"/>
+	<xs:element name="possibleMisuseDetected" type="dom:PossibleMisuseDetected"/>
+	<xs:element name="requestTimedOut" type="dom:RequestTimedOut"/>
+	<xs:element name="notAuthorized" type="dom:NotAuthorized"/>
+	<xs:element name="unknownFailure" type="dom:UnknownFailure"/>
+	
+</xs:schema>

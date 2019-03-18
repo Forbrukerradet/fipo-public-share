@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+==========================================================
+	Denne filen er en del av
+	Finansportalens web service kontrakter versjon 4.0
+========================================================== 
+-->
+		   
+<xs:schema targetNamespace="http://finansportalen.no/forsikring/domene/typer/4_0"
+		   xmlns:tns="http://finansportalen.no/forsikring/domene/typer/4_0"
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:include schemaLocation="simpletyper.xsd"/>
+	
+	<xs:annotation>
+		<xs:documentation>
+			Beskrivelse av feil som kan oppstaa paa tjenestesiden.
+		</xs:documentation>
+	</xs:annotation>
+    
+    <xs:simpleType name="FaultMessage">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="80"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="PriceUnavailable">
+      <xs:sequence>
+        <xs:element name="message" type="tns:FaultMessage"></xs:element> 
+      </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ServiceUnavailable">
+      <xs:sequence>
+        <xs:element name="message" type="tns:FaultMessage"></xs:element> 
+      </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="PossibleMisuseDetected">
+      <xs:sequence>
+        <xs:element name="message" type="tns:FaultMessage"></xs:element> 
+      </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="RequestTimedOut">
+      <xs:sequence>
+        <xs:element name="message" type="tns:FaultMessage"></xs:element> 
+      </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="NotAuthorized">
+      <xs:sequence>
+        <xs:element name="message" type="tns:FaultMessage"></xs:element> 
+      </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="UnknownFailure">
+      <xs:sequence>
+        <xs:element name="message" type="tns:FaultMessage"></xs:element> 
+      </xs:sequence>
+    </xs:complexType>
+    
+</xs:schema>
+

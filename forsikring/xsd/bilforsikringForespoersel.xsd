@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+==========================================================
+    Denne filen er en del av
+    Finansportalens web service kontrakter versjon 4.0
+========================================================== 
+-->
+           
+<xs:schema targetNamespace="http://finansportalen.no/forsikring/bil/typer/4_0"
+           xmlns:tns="http://finansportalen.no/forsikring/bil/typer/4_0" 
+           xmlns:dom="http://finansportalen.no/forsikring/domene/typer/4_0" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xs:import namespace="http://finansportalen.no/forsikring/domene/typer/4_0" schemaLocation="bilforsikringTyperInclude.xsd"/>
+    
+    <xs:element name="pingForespoersel" type="dom:PingForespoersel"/>
+    
+    <xs:element name="hentPrisForespoersel" type="tns:HentPrisForespoersel"/>
+    
+    <xs:complexType name="HentPrisForespoersel">
+        <xs:sequence>
+            <xs:element name="leasing" type="xs:boolean"/>
+            <xs:element name="postnr" type="dom:Postnr"/>
+            <xs:element name="gatenavn" type="dom:Gatenavn" minOccurs="0"/>
+            <xs:element name="gatenr" type="dom:Gatenr" minOccurs="0"/>
+            <xs:element name="forste_bil" type="xs:boolean"/>
+            <xs:element name="bonus_prosent" type="tns:BonusProsent" minOccurs="0"/>
+            <xs:element name="bonus_varighet" type="tns:BonusVarighet" minOccurs="0"/>
+            <!-- ett av elementene kjoerelengde og kjoerelengde_ubegrenset må benyttes -->
+            <xs:element name="kjoerelengde" type="xs:int" minOccurs="0"/>
+            <xs:element name="kjoerelengde_ubegrenset" type="tns:KjoerelengdeUbegrenset" minOccurs="0"/>
+            <xs:element name="egenandel" type="xs:int"/>
+            <xs:element name="bilmerke_navn" type="tns:BilmerkeNavn" minOccurs="0"/>
+            <xs:element name="registreringsaar" type="dom:Aarstall" minOccurs="0"/>
+            <xs:element name="modellar" type="dom:Aarstall" minOccurs="0"/>
+            <xs:element name="modell_navn" type="tns:ModellNavn" minOccurs="0"/>
+            <xs:element name="modell_variant_navn" type="tns:ModellVariantNavn" minOccurs="0"/>
+            <xs:choice>
+                <xs:element name="registreringsnummer" type="tns:Registreringsnummer"/>
+                <xs:element name="bil_type" type="tns:BilType"/>
+            </xs:choice>
+            <xs:element name="bil_kw" type="xs:int" minOccurs="0"/>
+            <xs:element name="bil_cc" type="xs:int" minOccurs="0"/>
+            <xs:element name="bil_4wd" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="bil_dorer" type="xs:int" minOccurs="0"/>
+            <xs:element name="bil_drivstoff" type="tns:BilDrivstoff" minOccurs="0"/>
+            <xs:element name="bil_gir" type="tns:BilGir" minOccurs="0"/>
+            <!-- hvis alder paa yngste foerer er over 25, benyttes elementet ikke --> 
+            <xs:element name="alderYngsteFoerer" type="tns:AlderYngsteFoerer" minOccurs="0"/>
+            <xs:element name="tyverialarm" type="xs:boolean"/>
+            <xs:element name="dekning" type="tns:Dekning"/>
+            <xs:element name="foedselsnr" type="dom:Foedselsnr" />
+            <xs:element name="antallbilskader" type="tns:Antallbilskader" />
+            <xs:element name="parkeringsforhold" type="tns:Parkeringsforhold"/>
+            <xs:element name="gjenfinning" type="xs:boolean" />
+            <xs:element name="pant_i_bil" type="xs:boolean" minOccurs="0"/>            
+            <xs:element name="foreningsmedlemskap" type="dom:Foreningsmedlemskap" minOccurs="0"/>
+            <xs:element name="navn" type="dom:Navn"/>
+            <xs:element name="klient_info" type="dom:Klientinfo"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="BonusProsent">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="-100"/>
+            <xs:maxInclusive value="100"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="BonusVarighet">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="en_aar"/>
+            <xs:enumeration value="to_aar"/>
+            <xs:enumeration value="tre_aar"/>
+            <xs:enumeration value="fire_aar"/>
+            <xs:enumeration value="fem_aar"/>
+            <xs:enumeration value="mer_enn_fem_aar"/>
+            <xs:enumeration value="ett_til_fem_aar"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="KjoerelengdeUbegrenset"/>
+
+    <xs:simpleType name="AlderYngsteFoerer">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="18"/>
+            <xs:maxInclusive value="25"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="Parkeringsforhold">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="egen_laast_garasje"/>
+            <xs:enumeration value="felles_garasje"/>
+            <xs:enumeration value="egen_tomt"/>
+            <xs:enumeration value="annen"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="BilType">
+        <xs:sequence>
+            <xs:element name="bilmerke" type="xs:int"/>
+            <xs:element name="modellaar" type="xs:int"/>
+            <xs:element name="modell" type="xs:int"/>
+            <xs:element name="variant" type="xs:int"/>
+            <xs:element name="revisjon" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="BilDrivstoff">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="bensin"/>
+            <xs:enumeration value="diesel"/>
+            <xs:enumeration value="elektrisk"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="BilGir">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="manuelt"/>
+            <xs:enumeration value="automatisk"/>
+            <xs:enumeration value="annet"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="BilmerkeNavn">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ModellNavn">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="50"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ModellVariantNavn">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="Dekning">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="ansvar"/>
+            <xs:enumeration value="delkasko"/>
+            <xs:enumeration value="kasko"/>            
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Registreringsnummer">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="7"/>
+            <xs:minLength value="7"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Antallbilskader">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="5"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
