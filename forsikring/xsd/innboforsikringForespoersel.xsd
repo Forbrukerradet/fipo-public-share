@@ -53,7 +53,7 @@
 			<xs:element name="skkerhetslas" type="tns:Skkerhetslas"/>
 			<xs:element name="bad_wc" type="tns:Rom"/>
 			<xs:element name="automatsikringer" type="xs:boolean"/>
-			<xs:element name="automatsikringer_aar" type="dom:Aarstall"/>
+			<xs:element name="automatsikringer_aar" type="dom:Aarstall" minOccurs="0"/>
 			<xs:element name="sammenkoblede_roykvarslere" type="xs:boolean"/>
 			<xs:element name="to_brannslukningsapparat" type="xs:boolean"/>
 			<xs:element name="ror_i_ror" type="xs:boolean"/>
