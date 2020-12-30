@@ -3,16 +3,16 @@
 <!-- 
 ==========================================================
     Denne filen er en del av
-    Finansportalens web service kontrakter versjon 4.0
+    Finansportalens web service kontrakter versjon 4.1
 ========================================================== 
 -->
            
-<xs:schema targetNamespace="http://finansportalen.no/forsikring/bil/typer/4_0"
-           xmlns:tns="http://finansportalen.no/forsikring/bil/typer/4_0" 
-           xmlns:dom="http://finansportalen.no/forsikring/domene/typer/4_0" 
+<xs:schema targetNamespace="http://finansportalen.no/forsikring/bil/typer/4_1"
+           xmlns:tns="http://finansportalen.no/forsikring/bil/typer/4_1"
+           xmlns:dom="http://finansportalen.no/forsikring/domene/typer/4_1"
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
     
-    <xs:import namespace="http://finansportalen.no/forsikring/domene/typer/4_0" schemaLocation="bilforsikringTyperInclude.xsd"/>
+    <xs:import namespace="http://finansportalen.no/forsikring/domene/typer/4_1" schemaLocation="bilforsikringTyperInclude.xsd"/>
     
     <xs:element name="pingForespoersel" type="dom:PingForespoersel"/>
     
@@ -22,8 +22,6 @@
         <xs:sequence>
             <xs:element name="leasing" type="xs:boolean"/>
             <xs:element name="postnr" type="dom:Postnr"/>
-            <xs:element name="gatenavn" type="dom:Gatenavn" minOccurs="0"/>
-            <xs:element name="gatenr" type="dom:Gatenr" minOccurs="0"/>
             <xs:element name="forste_bil" type="xs:boolean"/>
             <xs:element name="bonus_prosent" type="tns:BonusProsent" minOccurs="0"/>
             <xs:element name="bonus_varighet" type="tns:BonusVarighet" minOccurs="0"/>
@@ -36,10 +34,8 @@
             <xs:element name="modellar" type="dom:Aarstall" minOccurs="0"/>
             <xs:element name="modell_navn" type="tns:ModellNavn" minOccurs="0"/>
             <xs:element name="modell_variant_navn" type="tns:ModellVariantNavn" minOccurs="0"/>
-            <xs:choice>
-                <xs:element name="registreringsnummer" type="tns:Registreringsnummer"/>
-                <xs:element name="bil_type" type="tns:BilType"/>
-            </xs:choice>
+            <xs:element name="registreringsnummer" type="tns:Registreringsnummer" minOccurs="0"/>
+            <xs:element name="bil_type" type="tns:BilType"/>
             <xs:element name="bil_kw" type="xs:int" minOccurs="0"/>
             <xs:element name="bil_cc" type="xs:int" minOccurs="0"/>
             <xs:element name="bil_4wd" type="xs:boolean" minOccurs="0"/>

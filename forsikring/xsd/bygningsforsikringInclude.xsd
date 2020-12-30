@@ -3,11 +3,11 @@
 <!-- 
 ==========================================================
     Denne filen er en del av
-    Finansportalens web service kontrakter versjon 4.0
+    Finansportalens web service kontrakter versjon 4.1
 ========================================================== 
 -->
 
-<xs:schema targetNamespace="http://finansportalen.no/forsikring/bygning/typer/4_0"
+<xs:schema targetNamespace="http://finansportalen.no/forsikring/bygning/typer/4_1"
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
 					 
 	<xs:include schemaLocation="bygningsforsikringForespoersel.xsd"></xs:include>	

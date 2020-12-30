@@ -3,16 +3,16 @@
 <!-- 
 ==========================================================
 	Denne filen er en del av
-	Finansportalens web service kontrakter versjon 4.0
+	Finansportalens web service kontrakter versjon 4.1
 ========================================================== 
 -->
 		   
-<xs:schema targetNamespace="http://finansportalen.no/forsikring/innbo/typer/4_0"
-           xmlns:tns="http://finansportalen.no/forsikring/innbo/typer/4_0" 
-           xmlns:dom="http://finansportalen.no/forsikring/domene/typer/4_0" 
+<xs:schema targetNamespace="http://finansportalen.no/forsikring/innbo/typer/4_1"
+           xmlns:tns="http://finansportalen.no/forsikring/innbo/typer/4_1"
+           xmlns:dom="http://finansportalen.no/forsikring/domene/typer/4_1"
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	
-	<xs:import namespace="http://finansportalen.no/forsikring/domene/typer/4_0" schemaLocation="innboforsikringTyperInclude.xsd"/>
+	<xs:import namespace="http://finansportalen.no/forsikring/domene/typer/4_1" schemaLocation="innboforsikringTyperInclude.xsd"/>
     
 	<xs:element name="pingForespoersel" type="dom:PingForespoersel"/>
 	
@@ -27,7 +27,7 @@
 			<xs:element name="bor_selv" type="xs:boolean"/>
 			<xs:element name="byggemaate" type="dom:Byggemaate"/>
 			<xs:element name="boligtype" type="tns:Boligtype"/>
-            <xs:element name="overspenningsvern" type="xs:boolean"/>
+			<xs:element name="byggeaar" type="xs:int" minOccurs="0"/>
             <xs:element name="innbruddsalarm" type="xs:boolean"/>
             <xs:element name="innbruddsalarm_egenskap" type="dom:InnbruddsalarmEgenskap" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="brannalarm" type="xs:boolean"/>
@@ -42,20 +42,15 @@
             <xs:element name="antall_forsikringsskader" type="tns:Forsikringsskader" />
 			<xs:element name="el_kontroll" type="dom:ElKontroll"/>
 			<!-- hvis roer-opplegg ikke er totalrenovert, eller man ikke vet naar, saa benyttes elementet ikke -->
-			<xs:element name="komfyrvakt" type="xs:boolean" />
+			<xs:element name="komfyrvakt_komfyralarm" type="dom:KomfyrvaktKomfyralarm"/>
             <xs:element name="antall_husstandsmedlemmer" type="tns:Husstandsmedlemmer" />
 			<xs:element name="roeykere" type="xs:boolean" />
 			<xs:element name="foreningsmedlemskap" type="dom:Foreningsmedlemskap" minOccurs="0"/>
 			<xs:element name="antall_rom" type="tns:Rom"/>
 			<xs:element name="bruttoareal" type="dom:Areal"/>
-			<xs:element name="standard" type="tns:Standard"/>
-			<xs:element name="primaerrom" type="dom:Areal"/>
-			<xs:element name="skkerhetslas" type="tns:Skkerhetslas"/>
 			<xs:element name="bad_wc" type="tns:Rom"/>
 			<xs:element name="automatsikringer" type="xs:boolean"/>
 			<xs:element name="automatsikringer_aar" type="dom:Aarstall" minOccurs="0"/>
-			<xs:element name="sammenkoblede_roykvarslere" type="xs:boolean"/>
-			<xs:element name="to_brannslukningsapparat" type="xs:boolean"/>
 			<xs:element name="ror_i_ror" type="xs:boolean"/>
 			<xs:element name="klient_info" type="dom:Klientinfo"/>
 		</xs:sequence>
@@ -103,23 +98,6 @@
 		<xs:restriction base="xs:int">
 			<xs:minInclusive value="1"/>
 			<xs:maxInclusive value="10"/>
-		</xs:restriction>
-	</xs:simpleType>
-
-	<xs:simpleType name="Standard">
-		<xs:restriction base="xs:token">
-			<xs:enumeration value="normal"/>
-			<xs:enumeration value="svaert_hoey"/>
-			<xs:enumeration value="hoey"/>
-		</xs:restriction>
-	</xs:simpleType>
-
-	<xs:simpleType name="Skkerhetslas">
-		<xs:restriction base="xs:token">
-			<xs:enumeration value="ikke_sikkerhetslaas"/>
-			<xs:enumeration value="kun_hoveddoer"/>
-			<xs:enumeration value="alle_doerer"/>
-			<xs:enumeration value="alle_doerer_og_vinduer"/>
 		</xs:restriction>
 	</xs:simpleType>
 
