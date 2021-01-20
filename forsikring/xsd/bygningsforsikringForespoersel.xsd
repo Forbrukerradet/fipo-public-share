@@ -3,16 +3,16 @@
 <!-- 
 ==========================================================
 	Denne filen er en del av
-	Finansportalens web service kontrakter versjon 4.0
+	Finansportalens web service kontrakter versjon 4.1
 ========================================================== 
 -->
 		   
-<xs:schema targetNamespace="http://finansportalen.no/forsikring/bygning/typer/4_0"
-           xmlns:tns="http://finansportalen.no/forsikring/bygning/typer/4_0" 
-           xmlns:dom="http://finansportalen.no/forsikring/domene/typer/4_0" 
+<xs:schema targetNamespace="http://finansportalen.no/forsikring/bygning/typer/4_1"
+           xmlns:tns="http://finansportalen.no/forsikring/bygning/typer/4_1"
+           xmlns:dom="http://finansportalen.no/forsikring/domene/typer/4_1"
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	
-	<xs:import namespace="http://finansportalen.no/forsikring/domene/typer/4_0" schemaLocation="bygningsforsikringTyperInclude.xsd"/>
+	<xs:import namespace="http://finansportalen.no/forsikring/domene/typer/4_1" schemaLocation="bygningsforsikringTyperInclude.xsd"/>
     
 	<xs:element name="pingForespoersel" type="dom:PingForespoersel"/>
 	
@@ -40,7 +40,6 @@
             <xs:element name="brannalarm_egenskap" type="tns:BrannalarmEgenskap" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="vannalarm" type="xs:boolean"/>
             <xs:element name="vannstoppventil" type="xs:boolean"/>
-            <xs:element name="overspenningsvern" type="xs:boolean"/>
             <xs:element name="egenandel" type="xs:int"/>
             <xs:element name="foedselsnr" type="dom:Foedselsnr" />
             <xs:element name="antall_forsikringsskader_bygning" type="tns:Forsikringsskader"/>
@@ -52,12 +51,10 @@
       		<!-- hvis roer-opplegg ikke er totalrenovert, eller man ikke vet naar, saa benyttes elementet ikke -->
 	        <xs:element name="roerrenovert_aar" type="dom:Aarstall" minOccurs="0"/>
 			<xs:element name="antall_vaatrom" type="xs:int" minOccurs="0"/>
-            <xs:element name="sammenkoblede_roeykvarslere" type="xs:boolean" minOccurs="0"/>
             <xs:element name="antall_husstandsmedlemmer" type="xs:int"/>
-            <xs:element name="roeykere" type="xs:boolean" />
             <xs:element name="takvinkel" type="tns:Takvinkel" />
             <xs:element name="el_kontroll" type="dom:ElKontroll" />
-            <xs:element name="komfyrvakt" type="xs:boolean" />
+            <xs:element name="komfyrvakt_komfyralarm" type="dom:KomfyrvaktKomfyralarm"/>
             <xs:element name="automatsikringer" type="xs:boolean" />
             <xs:element name="automatsikringer_aar" type="dom:Aarstall" minOccurs="0"/>
             <xs:element name="p_rom_sum" type="dom:Areal" minOccurs="0"/>
@@ -69,8 +66,6 @@
             <xs:element name="navn" type="dom:Navn"/>
             <xs:element name="verneverdig" type="xs:boolean" />
             <xs:element name="rehabilitering" type="xs:boolean" />
-            <xs:element name="kjoleskap" type="xs:boolean" />
-            <xs:element name="vannstoppventil_kjoleskap" type="xs:boolean"  minOccurs="0"/>
             <xs:element name="etasjer" type="tns:Etasjer"/>
             <xs:element name="tilbakeslagsventil" type="xs:boolean" />
             <xs:element name="pant_i_bygning" type="xs:boolean" />

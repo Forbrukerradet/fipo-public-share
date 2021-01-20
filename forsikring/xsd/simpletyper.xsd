@@ -3,12 +3,12 @@
 <!-- 
 ==========================================================
 	Denne filen er en del av
-	Finansportalens web service kontrakter versjon 4.0
+	Finansportalens web service kontrakter versjon 4.1
 ========================================================== 
 -->
 		   
-<xs:schema targetNamespace="http://finansportalen.no/forsikring/domene/typer/4_0"
-           xmlns:tns="http://finansportalen.no/forsikring/domene/typer/4_0"
+<xs:schema targetNamespace="http://finansportalen.no/forsikring/domene/typer/4_1"
+           xmlns:tns="http://finansportalen.no/forsikring/domene/typer/4_1"
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	
 	<xs:annotation>
@@ -138,6 +138,14 @@
 		<xs:restriction base="xs:int">
 			<xs:minInclusive value="0"/>
 			<xs:maxInclusive value="9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="KomfyrvaktKomfyralarm">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="komfyrvakt"/>
+			<xs:enumeration value="komfyralarm"/>
+			<xs:enumeration value="nei"/>
 		</xs:restriction>
 	</xs:simpleType>
 	

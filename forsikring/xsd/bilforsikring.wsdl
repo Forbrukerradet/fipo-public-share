@@ -3,7 +3,7 @@
 <!--
 ==========================================================
 	Denne filen er en del av
-	Finansportalens web service kontrakter versjon 4.0
+	Finansportalens web service kontrakter versjon 4.1
 ==========================================================
 -->
 
@@ -13,9 +13,9 @@
 ================================================================================
 -->
 <wsdl:definitions name="BilforsikringTjeneste"
-			  targetNamespace="http://finansportalen.no/forsikring/bil/4_0"
-			  xmlns:tns="http://finansportalen.no/forsikring/bil/4_0"
-			  xmlns:typ="http://finansportalen.no/forsikring/bil/typer/4_0"
+			  targetNamespace="http://finansportalen.no/forsikring/bil/4_1"
+			  xmlns:tns="http://finansportalen.no/forsikring/bil/4_1"
+			  xmlns:typ="http://finansportalen.no/forsikring/bil/typer/4_1"
 			  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
 			  xmlns:xs="http://www.w3.org/2001/XMLSchema"
 			  xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/">
@@ -26,9 +26,9 @@
 ================================================================================
 -->
 	<wsdl:types>
-        <xs:schema targetNamespace="http://finansportalen.no/forsikring/bil/4_0">
+        <xs:schema targetNamespace="http://finansportalen.no/forsikring/bil/4_1">
             <xs:import
-                namespace="http://finansportalen.no/forsikring/bil/typer/4_0"
+                namespace="http://finansportalen.no/forsikring/bil/typer/4_1"
                 schemaLocation="bilforsikringInclude.xsd" />
         </xs:schema>
     </wsdl:types>
